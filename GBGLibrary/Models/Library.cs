@@ -55,5 +55,38 @@ namespace GBGLibrary.Models
             Librarians.Remove(librarian);
         }
 
+
+        //15.
+        public void LibraryStats()
+        {
+            int totalbooks = 0;
+            int availablebooks = 0;
+            int activeTransactions = 0;
+            int totalmembers = Members.Count();
+
+            foreach(Book book in Books)
+            {
+                totalbooks += (1 * book.TotalCopies);
+                availablebooks += (1 * book.AvailableCopies);
+            }
+
+
+            foreach(Transactions transaction in Transactions)
+            {
+                if(transaction.ReturnDate == DateTime.MinValue)
+                {
+                    activeTransactions++;
+                }
+            }
+
+            Console.WriteLine("Library stats");
+            Console.WriteLine($"Total books: {totalbooks}");
+            Console.WriteLine($"Available books: {availablebooks}");
+            Console.WriteLine($"Total members: {totalmembers}");
+            Console.WriteLine($"Active transactions: {activeTransactions}");
+
+
+        }
+
     }
 }

@@ -13,5 +13,12 @@ namespace GBGLibrary.Models
         public int ID { get; set; }
         public string Category { get; set; }
         public List<Book> Books { get; set; } = new List<Book>();
+
+
+        //13.
+        public bool IsFull()
+        {
+            return Books.Count >= 10;
+        }
     }
 }

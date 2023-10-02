@@ -12,7 +12,7 @@ namespace GBGLibrary.Models
         public int TransactionID { get; set; }
         public Book Book { get; set; }
         public Member Member { get; set; }
-        public DateTime IssueData { get; set; }
+        public DateTime IssueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
         //7.

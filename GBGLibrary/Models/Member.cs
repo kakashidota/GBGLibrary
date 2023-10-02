@@ -13,6 +13,8 @@ namespace GBGLibrary.Models
         public List<Book> CheckoutBooks { get; set; }
         public int OverdueFees { get; set; }
 
+        
+
 
         //6.
         public void CheckoutBook(Book book)
@@ -39,5 +41,43 @@ namespace GBGLibrary.Models
                 Console.WriteLine($"The book {book.Title} was not checked out by this member");
             }
         }
+
+        //12.
+        public void ViewTransactionHistory(Library library, Member member)
+        {
+            List<Transactions> membersTransaction = new List<Transactions>();
+
+            foreach(Transactions transaction in library.Transactions)
+            {
+                if(transaction.Member.ID == ID)
+                {
+                    membersTransaction.Add(transaction);
+                }
+            }
+
+            Console.WriteLine($"Transactions for member {Name}:");
+            if(membersTransaction.Count > 0) 
+            {
+                foreach (Transactions transaction in membersTransaction)
+                {
+                    string returnDateString;
+
+                    if (transaction.ReturnDate.HasValue)
+                    {
+                        returnDateString = transaction.ReturnDate.Value.ToString();
+                    } else
+                    {
+                        returnDateString = "Not returned";
+                    }
+                    Console.WriteLine($"Book: {transaction.Book.Title}, Issue Date: {transaction.IssueDate.ToString()}, Return date: {returnDateString}");
+                }
+            } else
+            {
+                Console.WriteLine("No transactions found");
+            }
+
+        }
+
+
     }
 }
